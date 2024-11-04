@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: grid;
+            gap: 2rem;
+            width: calc(100% - 1000px);
+            margin: 0;
+        }
+
+        input {
+            padding: 1rem;
+            font-size: 1.5rem;
+            outline: none;
+            border: 2px solid black;
+        }
+
+        input:not(:placeholder-shown):valid {
+            border-color: green;
+        }
+
+        input:not(:placeholder-shown):invalid {
+            border-color: red;
+        }
+
+        input:focus:invalid {
+            border-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" placeholder="user-name" required>
+        <input type="password" placeholder="password" required minlength="12">
+        <input type="email" placeholder="email" required>
+    </div>
+</body>
+
+</html>
