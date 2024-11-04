@@ -53,7 +53,7 @@ products.forEach(product => {
 document.querySelector(".js-products-grid")
   .innerHTML = productsHTML;
 
-const addedMessageTimeouts = {};
+const addedMessageTimouts = {};
 
 document.querySelectorAll(".js-add-to-cart")
   .forEach(button => {
@@ -64,21 +64,24 @@ document.querySelectorAll(".js-add-to-cart")
       const select = document.querySelector(`.js-quantity-selector-${productId}`);
       const quantity = Number(select.value);
 
-      // Added Message
+      // Added Message ####################
       const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
+      addedMessage.classList.add("added-message")
 
-      const previousTimoutId = addedMessageTimeouts[productId];
-      console.log(previousTimoutId)
-
+      // clear timout if it id already declared
+      const previousTimoutId = addedMessageTimouts[productId];
       if (previousTimoutId) {
-        clearTimeout(previousTimoutId)
+        clearTimeout(previousTimoutId);
       }
 
-      addedMessage.classList.add("added-message");
-      const timeoutID = setTimeout(() => {
+      const timoutId = setTimeout(() => {
         addedMessage.classList.remove("added-message")
       }, 2000);
-      addedMessageTimeouts[productId] = timeoutID;
+
+      addedMessageTimouts[productId] = timoutId;
+
+
+
 
       let matchingItem;
 
