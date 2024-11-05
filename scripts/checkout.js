@@ -19,7 +19,7 @@ cart.forEach(cartItem => {
 
 
     cartSummaryHTML += `
-    <div class="cart-item-container">
+    <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
         <div class="delivery-date">
         Delivery date: Tuesday, June 21
         </div>
@@ -88,18 +88,26 @@ cart.forEach(cartItem => {
         </div>
     </div>
     `;
+
 });
 
 
 document.querySelector(".js-order-summary")
     .innerHTML = cartSummaryHTML;
 
+
 document.querySelectorAll(".js-delete-link")
     .forEach(link => {
         link.addEventListener("click", () => {
-            const productId = link.dataset.productId
+            const productId = link.dataset.productId;
+
+            // remove it from the cart using the external function
             removeFromCart(productId);
-            console.log(cart)
+
+            // retrieve the cart item that you will delete and remove it from the dome
+            const cartItem = document.querySelector(`.js-cart-item-container-${productId}`);
+            cartItem.remove();
+
 
         })
     })
