@@ -1,7 +1,8 @@
 import { cart, removeFromCart } from "../data/cart.js";
 import { products } from "../data/products.js";
-import { formatCurrency } from "./utils/money.js"
+import { formatCurrency } from "./utils/money.js";
 
+updateCartQuantity();
 
 let cartSummaryHTML = '';
 
@@ -107,7 +108,17 @@ document.querySelectorAll(".js-delete-link")
             // retrieve the cart item that you will delete and remove it from the dome
             const cartItem = document.querySelector(`.js-cart-item-container-${productId}`);
             cartItem.remove();
+            updateCartQuantity();
+        });
+    });
 
 
-        })
-    })
+function updateCartQuantity() {
+    let cartQuantity = 0;
+    cart.forEach(cartItem => {
+        cartQuantity += cartItem.quantity;
+    });
+
+    document.querySelector(".js-cart-items-count")
+        .innerHTML = `${cartQuantity} items`;
+}
