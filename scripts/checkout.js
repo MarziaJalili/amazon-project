@@ -23,12 +23,26 @@ cart.forEach(cartItem => {
         }
     });
 
+    const deliveryOptionId = cartItem.deliveryOptionId;
+
+    let deliveryOption;
+    deliveryOptions.forEach(option => {
+        if (option.id === deliveryOptionId) {
+            deliveryOption = option;
+        }
+    });
+
+    const today = dayjs();
+    const deliveryDay = today.add(
+        deliveryOption.deliveryDays, "days"
+    ).format("dddd, MMMM D");
+
 
 
     cartSummaryHTML += `
     <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
         <div class="delivery-date">
-        Delivery date: Tuesday, June 21
+        Delivery date: ${deliveryDay}
         </div>
 
         <div class="cart-item-details-grid">
