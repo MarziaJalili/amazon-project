@@ -93,8 +93,8 @@ export function renderOrderSummary() {
 
                 // retrieve the cart item that you will delete and remove it from the dome
                 const cartItem = document.querySelector(`.js-cart-item-container-${productId}`);
-                cartItem.remove();
                 updateCartQuantity();
+                renderOrderSummary();
                 renderPaymentSummary();
             });
         });
@@ -139,6 +139,7 @@ export function renderOrderSummary() {
                 // get the quantity span 
                 document.querySelector(`.quantity-label-${productId}`).innerHTML = newQuantity;
                 updateCartQuantity();
+                renderPaymentSummary();
             })
         });
 
