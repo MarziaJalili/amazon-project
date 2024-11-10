@@ -2,13 +2,14 @@ import { cart, removeFromCart, calculateCartQuantity, updateQuantity, updateDeli
 import { getProduct, products } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
-import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
+import { calculateDeliveryDate, deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { renderCheckoutHeader } from "./checkoutHeader.js";
 
 
 
 export function renderOrderSummary() {
-    updateCartQuantity();
+
     let cartSummaryHTML = '';
 
     cart.forEach(cartItem => {
@@ -21,10 +22,7 @@ export function renderOrderSummary() {
 
         const deliveryOption = getDeliveryOption(deliveryOptionId);
 
-        const today = dayjs();
-        const deliveryDay = today.add(
-            deliveryOption.deliveryDays, "days"
-        ).format("dddd, MMMM D");
+        const deliveryDay = calculateDeliveryDate(deliveryOption);
 
 
 
@@ -93,7 +91,7 @@ export function renderOrderSummary() {
 
                 // retrieve the cart item that you will delete and remove it from the dome
                 const cartItem = document.querySelector(`.js-cart-item-container-${productId}`);
-                updateCartQuantity();
+                renderCheckoutHeader();
                 renderOrderSummary();
                 renderPaymentSummary();
             });
@@ -146,10 +144,7 @@ export function renderOrderSummary() {
     function deliveryOptionsHTML(matchingProduct, cartItem) {
         let html = "";
         deliveryOptions.forEach(deliveryOption => {
-            const today = dayjs();
-            const deliveryDay = today.add(
-                deliveryOption.deliveryDays, "days"
-            ).format("dddd, MMMM D");
+            const deliveryDay = calculateDeliveryDate(deliveryOption)
 
             const priceString = deliveryOption.priceCents === 0
                 ? "FREE"
