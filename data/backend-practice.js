@@ -1,3 +1,10 @@
 const xml = new XMLHttpRequest();
-xml.open('GET', 'https://supersimplebackend.dev');
+
+xml.addEventListener("load", () => {
+    console.log(xml.response)
+});
+
+xml.open('GET', 'https://supersimplebackend.dev/images/apple.jpg');
 xml.send();
+
+
