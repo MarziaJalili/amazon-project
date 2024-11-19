@@ -19,6 +19,7 @@ export function loadFromStorage() {
 }
 
 
+
 function saveToStorage() {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
@@ -92,4 +93,17 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
     });
     matchingItem.deliveryOptionId = deliveryOptionId;
     saveToStorage();
+}
+
+
+export function loadCart(fun) {
+    const xml = new XMLHttpRequest();
+    xml.addEventListener("load", () => {
+        console.log(xml.response);
+
+        fun();
+    });
+
+    xml.open("GET", "https://supersimplebackend.dev/cart");
+    xml.send();
 }
