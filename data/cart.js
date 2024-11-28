@@ -107,3 +107,16 @@ export function loadCart(fun) {
     xml.open("GET", "https://supersimplebackend.dev/cart");
     xml.send();
 }
+
+
+export function loadCartFetch() {
+    const promise = fetch(
+        "https://supersimplebackend.dev/cart"
+    ).then(response => {
+        return response.text();
+    }).then(textData => {
+        console.log(textData)
+    });
+    return promise;
+}
+

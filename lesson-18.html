@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>lesson 18</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <script>
+        // const xml = new XMLHttpRequest()
+        // xml.addEventListener("load", () => {
+        //     console.log(xml.response)
+        // })
+        // xml.open("GET", "https://amazon.com")
+        // xml.send();
+
+        // fetch("https://supersimplebackend.dev/greeting").then(response => {
+        //     return response.text();
+        // }).then(textData => {
+        //     console.log(textData)
+        // });
+
+        const promise = fetch("https://supersimplebackend.dev/products")
+            .then((response) => {
+                return response.json();
+            })
+            .then((jsonData) => {
+                console.log(jsonData)
+            })
+
+        promise.then(() => {
+            console.log("sldkj")
+        })
+
+    </script>
+</body>
+
+</html>

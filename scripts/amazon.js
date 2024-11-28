@@ -64,7 +64,7 @@ function renderProductsGrid() {
   })
   document.querySelector(".js-products-grid")
     .innerHTML = productsHTML;
-
+  //object to track the timouts
   const addedMessageTimouts = {};
 
   // update the total quantity of the cart 
