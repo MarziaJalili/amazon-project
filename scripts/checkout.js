@@ -7,7 +7,19 @@ import { loadCart, loadCartFetch } from "../data/cart.js";
 // import "../data/car.js";
 // import "../data/backend-practice.js"
 
+async function loadPage() {
+    await Promise.all([
+        loadProductsFetch(),
+        loadCartFetch()
+    ]);
+    renderCheckoutHeader();
+    renderOrderSummary();
+    renderPaymentSummary();
+}
 
+loadPage();
+
+/*
 async function loadPage() {
     try {
         // throw "error1"
@@ -32,6 +44,7 @@ async function loadPage() {
     renderPaymentSummary();
 }
 loadPage();
+*/
 
 /*
 Promise.all([

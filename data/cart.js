@@ -49,6 +49,28 @@ export function addToCart(productId) {
     saveToStorage();
 }
 
+export function addToCartOrder(productId) {
+    let matchingItem;
+
+    cart.forEach(item => {
+        if (productId === item.productId) {
+            matchingItem = item
+        }
+    });
+
+    if (matchingItem) {
+        matchingItem.quantity += 1;
+    } else {
+        cart.push({
+            productId: productId,
+            quantity: 1,
+            deliveryOptionId: '1'
+        })
+    };
+
+    saveToStorage();
+}
+
 
 
 
