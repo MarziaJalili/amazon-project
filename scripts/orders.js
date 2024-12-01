@@ -70,7 +70,7 @@ async function loadPage() {
       </div>
 
       <div class="product-actions">
-        <a href="tracking.html?orderId=${productDetails.productId}&productId=${product.id}">
+        <a href="tracking.html?orderId=${order.id}&productId=${product.id}">
           <button class="track-package-button button-secondary">
             Track package
           </button>
